@@ -20,15 +20,18 @@ class CalculatorUI(tk.Tk):
 
     def create_display(self):
         display = tk.Entry(self, justify='right', textvariable=self.text, state='disabled')
+        display.config(bg='Black', fg='Yellow', font=('Times',30))
         display.pack()
         
 
     def create_buttons(self):
-        top_row_keys = ['(',')','CLR','DEL']
-        top_row_buttons = Keypad(self, keynames=top_row_keys, columns=3)
-        keypad = Keypad(self, keynames=list('789456123 0.'), columns=3)
-        operators = Keypad(self, keynames=list('*/+-^='))
-        top_row_buttons.pack(**self.PACKOPTION)
+        top_row_keys = [' ( ',' ) ','CLR','DEL']
+        numbers_keys = list('789456123 0.')
+        operators_keys = ['^','/','*','-','+','=']
+        top_row_buttons = Keypad(self, keynames=top_row_keys, columns=4)
+        keypad = Keypad(self, keynames=numbers_keys, columns=3)
+        operators = Keypad(self, keynames=operators_keys)
+        top_row_buttons.pack(anchor=tk.N, **self.PACKOPTION)
         keypad.pack(side=tk.LEFT, **self.PACKOPTION)
         operators.pack(side=tk.RIGHT, **self.PACKOPTION)
         
