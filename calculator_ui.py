@@ -24,17 +24,17 @@ class CalculatorUI(tk.Tk):
         
 
     def create_buttons(self):
-        top_row_keys = ['(',')','CLR']
+        top_row_keys = ['(',')','CLR','DEL']
         top_row_buttons = Keypad(self, keynames=top_row_keys, columns=3)
-        keypad = Keypad(self, keynames=list('()789456123 0.'), columns=3)
+        keypad = Keypad(self, keynames=list('789456123 0.'), columns=3)
         operators = Keypad(self, keynames=list('*/+-^='))
-        top_row_buttons.pack(side=tk.LEFT, **self.PACKOPTION)
+        top_row_buttons.pack(**self.PACKOPTION)
         keypad.pack(side=tk.LEFT, **self.PACKOPTION)
         operators.pack(side=tk.RIGHT, **self.PACKOPTION)
         
 
     def init_components(self):
-        keypad = Keypad(self, keynames=list('()789456123 0.'), columns=3)
+        keypad = Keypad(self, keynames=list('789456123 0.'), columns=3)
         operators = Keypad(self, keynames=list('*/+-^='))
         keypad.bind('<Button>', self.keypress_handler)
         operators.bind('<Button>', self.keypress_handler)
