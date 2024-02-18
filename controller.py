@@ -11,12 +11,12 @@ class Controller:
 
     def update_display(self, event):
         pressed_text = event.widget['text']
-        self.view.set_display_text(self.view.get_display_text+pressed_text)
+        self.view.set_display_text(self.view.get_display_text()+pressed_text)
 
     def bind_command(self):
         """bind commands to buttons based on thier text"""
         for frame in self.view.winfo_children():
-            for component in frame:
+            for component in frame.winfo_children():
                 component.bind('<Button>', self.update_display)
 
     def run(self):
