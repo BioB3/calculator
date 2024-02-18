@@ -1,6 +1,10 @@
 """Main part to start Calculator app"""
 
 from calculator_ui import CalculatorUI
+from controller import Controller
+from model import Model
 
-calc = CalculatorUI()
-calc.run()
+view = CalculatorUI()
+model = Model()
+calculator = Controller(view, model)
+calculator.run()
