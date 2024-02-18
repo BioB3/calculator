@@ -19,7 +19,7 @@ class CalculatorUI(tk.Tk):
         self.create_buttons()
 
     def create_display(self):
-        display = tk.Entry(self, justify='right', textvariable=self.display_text, state='disabled')
+        display = tk.Entry(self, justify='right', textvariable=self.display_text, state='readonly')
         display.config(bg='Black', fg='Yellow', font=('Times',30))
         display.pack()
 
