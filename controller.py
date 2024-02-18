@@ -18,3 +18,6 @@ class Controller:
         for frame in self.view.winfo_children():
             for component in frame:
                 component.bind('<Button>', self.update_display)
+
+    def run(self):
+        self.view.run()
