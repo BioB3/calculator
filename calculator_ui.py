@@ -26,7 +26,7 @@ class CalculatorUI(tk.Tk):
     def create_buttons(self):
         top_row_keys = [' ( ',' ) ','CLR','DEL']
         numbers_keys = list('789456123 0.')
-        operators_keys = ['^','/','*','-','+','=']
+        operators_keys = ['mod','^','/','*','-','+','=']
         top_row_buttons = Keypad(self, keynames=top_row_keys, columns=4)
         keypad = Keypad(self, keynames=numbers_keys, columns=3)
         operators = Keypad(self, keynames=operators_keys)
