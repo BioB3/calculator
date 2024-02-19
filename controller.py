@@ -40,6 +40,7 @@ class Controller:
         self.view.set_display_text(new_text)
 
     def recall_history(self, event, index):
+        """recall history from the listbox"""
         selection_index = event.widget.curselection()
         selection_text = event.widget.get(selection_index[0])
         self.view.set_display_text(selection_text.split()[index])
@@ -80,4 +81,5 @@ class Controller:
                 component.bind('<<ComboboxSelected>>', self.update_display_func)
 
     def run(self):
+        """run the controller"""
         self.view.run()
