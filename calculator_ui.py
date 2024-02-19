@@ -22,12 +22,14 @@ class CalculatorUI(tk.Tk):
         self.create_buttons()
 
     def create_display(self):
+        """create entry to show input"""
         display = tk.Entry(self, textvariable=self.display_text, state='readonly',
                            readonlybackground='Black')
         display.config(justify='right', fg='Yellow', font=('Times',30))
         display.pack(fill='x')
 
     def create_buttons(self):
+        """create buttons pad to recieve input"""
         top_row_keys = ['(',')','CLR','DEL']
         numbers_keys = ['7','8','9','4','5','6','1','2','3','','0','.']
         operators_keys = ['mod','^','/','*','-','+','=']
@@ -40,6 +42,7 @@ class CalculatorUI(tk.Tk):
         operators.pack(side=tk.RIGHT, **self.PACKOPTION)
 
     def create_func_box(self):
+        """create a math function box"""
         func_box = ttk.Combobox(self, font=self.default_font, textvariable=self.selected_func)
         func_box['values'] = [' exp ',' ln  ','log10',' log2',' sqrt',' sin ',' cos ',' tan ']
         self.option_add("*TCombobox*Listbox*Font", self.default_font)
@@ -47,12 +50,15 @@ class CalculatorUI(tk.Tk):
         func_box.pack(padx=2, pady=2, fill='x')
 
     def set_display_text(self, text):
+        """edit the display"""
         self.display_text.set(text)
 
     def get_display_text(self):
+        """get the display as string"""
         return self.display_text.get()
 
     def create_history(self):
+        """create history listbox"""
         history_box = tk.Listbox(self, selectmode=tk.SINGLE, font=('Times',20))
         scrollbar = tk.Scrollbar(history_box, orient=tk.VERTICAL)
         history_box.config(yscrollcommand=scrollbar.set)
@@ -61,6 +67,7 @@ class CalculatorUI(tk.Tk):
         scrollbar.pack(side=tk.RIGHT, fill='y')
 
     def set_history(self, history: list):
+        """set value in history listbox"""
         self.children['!listbox'].delete(0,tk.END)
         while len(history) > 10:
             history.pop(0)
