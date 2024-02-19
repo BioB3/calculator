@@ -1,6 +1,6 @@
 """User interface for calculator"""
 import tkinter as tk
-from tkinter import font
+from tkinter import font, ttk
 from keypad import Keypad
 
 class CalculatorUI(tk.Tk):
@@ -26,7 +26,7 @@ class CalculatorUI(tk.Tk):
 
     def create_buttons(self):
         top_row_keys = ['(',')','CLR','DEL']
-        numbers_keys = list('789456123 0.')
+        numbers_keys = ['7','8','9','4','5','6','1','2','3','','0','.']
         operators_keys = ['mod','^','/','*','-','+','=']
         top_row_buttons = Keypad(self, keynames=top_row_keys, columns=4)
         top_row_buttons.configure(height=2)
@@ -35,6 +35,9 @@ class CalculatorUI(tk.Tk):
         top_row_buttons.pack(padx=2, pady=2, fill='x')
         keypad.pack(side=tk.LEFT, **self.PACKOPTION)
         operators.pack(side=tk.RIGHT, **self.PACKOPTION)
+
+    def create_func_box(self):
+        func_box = ttk.Combobox(self)
 
     def set_display_text(self, text):
         self.display_text.set(text)
@@ -51,8 +54,11 @@ class CalculatorUI(tk.Tk):
         scrollbar.pack(side=tk.RIGHT, fill='y')
 
     def set_history(self, history: list):
+        self.children['!listbox'].delete(0,tk.END)
+        while len(history) > 10:
+            history.pop(0)
         for i in range(len(history)):
-            self.children['!listbox'].insert(i+1, history[i])
+            self.children['!listbox'].insert(i+1, f'{history[i][0]}  =  {history[i][1]}')
 
     def run(self):
         """Start the app"""

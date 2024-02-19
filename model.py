@@ -9,9 +9,6 @@ class Model:
     def __init__(self):
         self.history = []
 
-    def get_history(self):
-        return self.history[-10:]
-
     def evaluate_expression(self, expression:str):
         """Evalute expression and return the result"""
         modified = expression.replace('^', '**').replace('mod', '%')
@@ -21,5 +18,5 @@ class Model:
             result = 'error'
         finally:
             if result != 'error':
-                self.history.append(result)
+                self.history.append((expression,result))
             return result
