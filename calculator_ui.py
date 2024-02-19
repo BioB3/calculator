@@ -43,12 +43,16 @@ class CalculatorUI(tk.Tk):
         return self.display_text.get()
 
     def create_history(self):
-        history_box = tk.Listbox(self, selectmode=tk.SINGLE)
+        history_box = tk.Listbox(self, selectmode=tk.SINGLE, font=('Times',20))
         scrollbar = tk.Scrollbar(history_box, orient=tk.VERTICAL)
         history_box.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=history_box.yview)
         history_box.pack(side=tk.TOP, expand=True, fill='both')
         scrollbar.pack(side=tk.RIGHT, fill='y')
+
+    def set_history(self, history: list):
+        for i in range(len(history)):
+            self.children['!listbox'].insert(i+1, history[i])
 
     def run(self):
         """Start the app"""

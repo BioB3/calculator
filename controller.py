@@ -30,7 +30,9 @@ class Controller:
                             button.bind('<Button>', lambda event, x='' :
                                 self.view.set_display_text(x))
                         elif button['text'] == '=':
-                            button.bind('<Button>', self.calculate)
+                            button.bind('<Button>', self.calculate, add='+')
+                            button.bind('<Button>', lambda event, x=self.model.get_history():
+                                self.view.set_history(x), add='+')
                         elif button['text'] not in ['=','CLR','DEL']:
                             button.bind('<Button>', self.update_display)
 
