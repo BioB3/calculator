@@ -3,6 +3,9 @@ import tkinter as tk
 from tkinter import ttk
 from calculator_ui import CalculatorUI
 from model import Model
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+import pygame
 
 class Controller:
     """Controller class for calculator"""
@@ -10,6 +13,7 @@ class Controller:
         self.view = view
         self.model = model
         self.bind_command()
+        pygame.init()
 
     def update_display(self, event):
         """Update display's text"""
@@ -43,7 +47,13 @@ class Controller:
     def calculate(self, *args):
         """Calculate the expression on the display"""
         result = self.model.evaluate_expression(self.view.get_display_text())
-        self.view.set_display_text(result)
+        if result == 'error':
+            self.view.children['!entry'].configure(fg='red')
+            my_sound = pygame.mixer.Sound('beep-03.wav')
+            my_sound.play()
+        else:
+            self.view.children['!entry'].configure(fg='yellow')
+            self.view.set_display_text(result)
 
     def bind_command(self):
         """bind commands to component based on thier type and text"""
