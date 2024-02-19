@@ -41,7 +41,7 @@ class CalculatorUI(tk.Tk):
 
     def create_func_box(self):
         func_box = ttk.Combobox(self, font=self.default_font, textvariable=self.selected_func)
-        func_box['values'] = ['exp','ln','log10','log2','sqrt','sin','cos','tan']
+        func_box['values'] = [' exp ',' ln  ','log10',' log2',' sqrt',' sin ',' cos ',' tan ']
         self.option_add("*TCombobox*Listbox*Font", self.default_font)
         func_box.set('Mathematical functions')
         func_box.pack(padx=2, pady=2, fill='x')
