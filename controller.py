@@ -25,13 +25,14 @@ class Controller:
         for component in self.view.winfo_children():
             if isinstance(component,tk.Frame):
                 for button in component.winfo_children():
-                    if button['text'] == 'CLR':
-                        button.bind('<Button>', lambda event, x='' :
-                            self.view.set_display_text(x))
-                    elif button['text'] == '=':
-                        button.bind('<Button>', self.calculate)
-                    elif button['text'] not in ['=','CLR','DEL']:
-                        button.bind('<Button>', self.update_display)
+                    if isinstance(button, tk.Button):
+                        if button['text'] == 'CLR':
+                            button.bind('<Button>', lambda event, x='' :
+                                self.view.set_display_text(x))
+                        elif button['text'] == '=':
+                            button.bind('<Button>', self.calculate)
+                        elif button['text'] not in ['=','CLR','DEL']:
+                            button.bind('<Button>', self.update_display)
 
     def run(self):
         self.view.run()
