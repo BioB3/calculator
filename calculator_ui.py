@@ -13,15 +13,18 @@ class CalculatorUI(tk.Tk):
         super().__init__()
         self.title('Calculator')
         self.display_text = tk.StringVar()
+        self.selected_func = tk.StringVar()
         self.default_font = font.nametofont('TkDefaultFont')
         self.default_font.configure(family='Arial TUR', size=16)
         self.create_history()
         self.create_display()
+        self.create_func_box()
         self.create_buttons()
 
     def create_display(self):
-        display = tk.Entry(self, justify='right', textvariable=self.display_text, state='readonly')
-        display.config(bg='Black', fg='Yellow', font=('Times',30))
+        display = tk.Entry(self, textvariable=self.display_text, state='readonly',
+                           readonlybackground='Black')
+        display.config(justify='right', fg='Yellow', font=('Times',30))
         display.pack(fill='x')
 
     def create_buttons(self):
@@ -37,7 +40,11 @@ class CalculatorUI(tk.Tk):
         operators.pack(side=tk.RIGHT, **self.PACKOPTION)
 
     def create_func_box(self):
-        func_box = ttk.Combobox(self)
+        func_box = ttk.Combobox(self, font=self.default_font, textvariable=self.selected_func)
+        func_box['values'] = ['exp','ln','log10','log2','sqrt','sin','cos','tan']
+        self.option_add("*TCombobox*Listbox*Font", self.default_font)
+        func_box.set('Mathematical functions')
+        func_box.pack(padx=2, pady=2, fill='x')
 
     def set_display_text(self, text):
         self.display_text.set(text)

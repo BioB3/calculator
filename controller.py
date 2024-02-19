@@ -1,5 +1,6 @@
 """Controller for Calculator app"""
 import tkinter as tk
+from tkinter import ttk
 from calculator_ui import CalculatorUI
 from model import Model
 
@@ -14,6 +15,16 @@ class Controller:
         """Update display's text"""
         pressed_text = event.widget['text']
         self.view.set_display_text(self.view.get_display_text()+pressed_text)
+
+    def update_display_func(self, *args):
+        """Update display's text for functions combobox"""
+        current_input = self.view.get_display_text()
+        if current_input.endswith(('(','mod','^','/','*','-','+')):
+            to_be_add = self.view.get_display_text()+self.view.selected_func.get()+'('
+        else:
+            to_be_add = self.view.selected_func.get()+'('+\
+                self.view.get_display_text()+')'
+        self.view.set_display_text(to_be_add)
 
     def recall_history(self, event, index):
         selection_index = event.widget.curselection()
@@ -44,6 +55,8 @@ class Controller:
                     self.recall_history(event,0), add='+')
                 component.bind('<Button-3>', lambda event:
                     self.recall_history(event,2), add='+')
+            elif isinstance(component, ttk.Combobox):
+                component.bind('<<ComboboxSelected>>', self.update_display_func)
 
     def run(self):
         self.view.run()

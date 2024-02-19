@@ -11,7 +11,7 @@ class Model:
 
     def evaluate_expression(self, expression:str):
         """Evalute expression and return the result"""
-        modified = expression.replace('^', '**').replace('mod', '%')
+        modified = expression.replace('^', '**').replace('mod', '%').replace('ln', 'log')
         try:
             result = str(eval(modified))
         except Exception:
