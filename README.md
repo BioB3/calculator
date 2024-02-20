@@ -1,5 +1,5 @@
 ## Calculator
-Simple calculator containing basic math functions
+Simple calculator containing basic math functions and history.<br /> Select the expression from the history tab and left click to recall the expression or right click to recall the result.
 
 | file   | Description  |
 |--------|--------------|
