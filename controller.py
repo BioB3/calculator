@@ -41,9 +41,12 @@ class Controller:
 
     def recall_history(self, event, index):
         """recall history from the listbox"""
-        selection_index = event.widget.curselection()
-        selection_text = event.widget.get(selection_index[0])
-        self.view.set_display_text(selection_text.split()[index])
+        try:
+            selection_index = event.widget.curselection()[0]
+            selection_text = self.model.history[selection_index]
+            self.view.set_display_text(selection_text[index])
+        except:
+            pass
 
     def calculate(self, *args):
         """Calculate the expression on the display"""
@@ -76,7 +79,7 @@ class Controller:
                 component.bind('<Button-1>', lambda event:
                     self.recall_history(event,0), add='+')
                 component.bind('<Button-3>', lambda event:
-                    self.recall_history(event,2), add='+')
+                    self.recall_history(event,1), add='+')
             elif isinstance(component, ttk.Combobox):
                 component.bind('<<ComboboxSelected>>', self.update_display_func)
 
